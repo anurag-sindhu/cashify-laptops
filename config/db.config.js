@@ -1,4 +1,4 @@
-require('dotenv').config({ quiet: true });
+require('./env');
 
 const DB_CONFIG = {
     host: process.env.DB_HOST || '127.0.0.1',
