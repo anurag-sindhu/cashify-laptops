@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS laptops (
+    product_id VARCHAR(32) NOT NULL,
+    title VARCHAR(512) NOT NULL,
+    brand VARCHAR(64),
+    link VARCHAR(1024) NOT NULL,
+    mrp DECIMAL(12, 2),
+    price DECIMAL(12, 2),
+    sale_price DECIMAL(12, 2) NOT NULL,
+    effective_price DECIMAL(12, 2),
+    ram VARCHAR(255),
+    storage VARCHAR(1024),
+    availability VARCHAR(64),
+    available_quantity INT,
+    source VARCHAR(32) NOT NULL DEFAULT 'cashify',
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (product_id),
+    KEY idx_laptops_brand (brand),
+    KEY idx_laptops_sale_price (sale_price)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;

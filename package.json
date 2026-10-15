@@ -1,0 +1,19 @@
+{
+  "name": "cashify-laptops",
+  "version": "1.0.0",
+  "description": "Scrapes refurbished laptop listings from Cashify and stores them in MySQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "db:migrate": "node scripts/migrate.js",
+    "db:seed": "node scripts/seed.js"
+  },
+  "license": "ISC",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.8",
+    "mysql2": "^3.24.6"
+  }
+}

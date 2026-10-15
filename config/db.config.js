@@ -1,0 +1,13 @@
+require('dotenv').config({ quiet: true });
+
+const DB_CONFIG = {
+    host: process.env.DB_HOST || '127.0.0.1',
+    port: Number(process.env.DB_PORT || 3305),
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME || 'cashify_laptops',
+};
+
+module.exports = {
+    DB_CONFIG,
+};
