@@ -11,7 +11,7 @@ const splitCsv = (value = '') =>
 // comma separated: system, email, slack, whatsapp, sms
 const NOTIFICATION_CHANNELS = splitCsv(process.env.NOTIFICATION_CHANNELS || 'system');
 // comma separated email addresses
-const NOTIFICATION_EMAIL_TO = splitCsv(process.env.NOTIFICATION_EMAIL_TO).join(', ') || undefined;
+const NOTIFICATION_EMAIL_TO = splitCsv(process.env.NOTIFICATION_EMAIL_TO);
 
 module.exports = {
     NOTIFICATION_URL,
