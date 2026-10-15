@@ -9,9 +9,13 @@ const {
     API_HEADERS,
     SEARCH_FILTERS,
     SORT_FIELD,
+    IGNORED_TITLE_KEYWORDS,
 } = require('../config/scraper.config');
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const hasIgnoredKeyword = (title) =>
+    IGNORED_TITLE_KEYWORDS.some((keyword) => title.toLowerCase().includes(keyword.toLowerCase()));
 
 const buildRequestBody = (offset) => ({
     qry: null,
@@ -67,6 +71,9 @@ const processListing = async (listing, context) => {
     const product = formatProduct(listing);
     if (!product) {
         console.warn('Product not formatted correctly:', listing.id);
+        return;
+    }
+    if (hasIgnoredKeyword(product.title)) {
         return;
     }
 

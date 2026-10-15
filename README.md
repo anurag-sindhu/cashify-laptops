@@ -24,3 +24,15 @@ After each run, newly found laptops are sent as a single notification to `POST /
 - `services/product.service.js` – MySQL reads/writes
 - `config/` – scraper and DB config (DB credentials come from `.env`)
 - `db/` – schema, connection pool, seed data
+
+
+
+SELECT product_id, title, effective_price, ram, storage, link
+FROM laptops
+WHERE title NOT LIKE '%Core i5%'
+  AND title NOT LIKE '%Core i3%'
+  AND title NOT LIKE '%7th Gen%'
+  AND title NOT LIKE '%8th Gen%'
+  AND title NOT LIKE '%9th Gen%'
+  AND title NOT LIKE '%touch%'
+ORDER BY effective_price;
