@@ -1,4 +1,4 @@
-require('dotenv').config({ quiet: true });
+require('./env');
 
 const NOTIFICATION_URL = process.env.NOTIFICATION_URL || 'http://localhost:3006/notifications';
 const NOTIFICATION_AUTH_TOKEN = process.env.NOTIFICATION_AUTH_TOKEN;
