@@ -42,7 +42,7 @@ const handleNewProduct = async (product, { newProducts }) => {
     }
     const message = `[new] ${product.title} | ${product.brand} | Rs.${product.effectivePrice} | ${product.ram} | ${product.storage} | ${product.link}`;
     console.log(message);
-    await notify(`Cashify new laptop: ${product.title}`, message);
+    await notify(`Cashify new laptop: ${product.title} ${message} at ${new Date()}`);
     newProducts.push(product);
 };
 
@@ -87,7 +87,7 @@ const runScraper = async () => {
         storedPrices: await loadProductPrices(),
     };
 
-    console.log(`Cashify Laptops API | Page size: ${PAGE_SIZE} | Max pages: ${MAX_PAGES}`);
+    console.log(`Cashify Laptops API | Page size: ${PAGE_SIZE} | Max pages: ${MAX_PAGES} at ${new Date()}`);
 
     for (let page = 0; page < MAX_PAGES; page++) {
         const offset = page * PAGE_SIZE;
@@ -98,7 +98,7 @@ const runScraper = async () => {
             const listings = data.results || [];
 
             if (!listings.length) {
-                console.log('No more products found.');
+                console.log(`No more products found. at ${new Date()}`);
                 break;
             }
 
@@ -110,7 +110,7 @@ const runScraper = async () => {
                 break;
             }
         } catch (error) {
-            console.error(`Cashify page fetch failed: ${error.message}`);
+            console.error(`Cashify page fetch failed: ${error.message} at ${new Date()}`);
             break;
         }
     }

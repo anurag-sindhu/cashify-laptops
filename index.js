@@ -24,9 +24,9 @@ const runLoop = async () => {
 
     try {
         const { newProducts, priceDrops } = await runScraper();
-        console.log(`Cashify Laptops: ${newProducts.length} new, ${priceDrops.length} price drops`);
+        console.log(`Cashify Laptops: ${newProducts.length} new, ${priceDrops.length} price drops at ${new Date()}`);
     } catch (error) {
-        console.error('Failed to scrape Cashify laptops:', error.message);
+        console.error(`Failed to scrape Cashify laptops ${error.message} at ${new Date()}`);
     }
 
     console.log(
