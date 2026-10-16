@@ -10,12 +10,19 @@ const {
     SEARCH_FILTERS,
     SORT_FIELD,
     IGNORED_TITLE_KEYWORDS,
+    REQUIRED_KEYWORDS,
 } = require('../config/scraper.config');
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const hasIgnoredKeyword = (title) =>
-    IGNORED_TITLE_KEYWORDS.some((keyword) => title.toLowerCase().includes(keyword.toLowerCase()));
+const containsAny = (text = '', keywords) =>
+    keywords.some((keyword) => text.toLowerCase().includes(keyword.toLowerCase()));
+
+const isWanted = (product) =>
+    !containsAny(product.title, IGNORED_TITLE_KEYWORDS) &&
+    Object.entries(REQUIRED_KEYWORDS).every(
+        ([field, keywords]) => !keywords.length || containsAny(product[field], keywords),
+    );
 
 const buildRequestBody = (offset) => ({
     qry: null,
@@ -73,7 +80,7 @@ const processListing = async (listing, context) => {
         console.warn('Product not formatted correctly:', listing.id);
         return;
     }
-    if (hasIgnoredKeyword(product.title)) {
+    if (!isWanted(product)) {
         return;
     }
 

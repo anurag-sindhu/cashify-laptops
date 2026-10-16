@@ -45,6 +45,12 @@ const SORT_FIELD = { sale_price: 'asc' };
 // listings whose title contains any of these (case-insensitive) are skipped, e.g. ['Touch Screen', 'i3']
 const IGNORED_TITLE_KEYWORDS = ['Core i5', 'Core i3', '7th Gen', '8th Gen', '9th Gen', 'touch'];
 
+// listings are kept only if the field contains at least one of its keywords (case-insensitive); empty = no check
+const REQUIRED_KEYWORDS = {
+    ram: ['16 GB', '32 GB'],
+    storage: ['512 GB SSD', '256 GB SSD'],
+};
+
 module.exports = {
     API_BASE_URL,
     PAGE_SIZE,
@@ -54,4 +60,5 @@ module.exports = {
     SEARCH_FILTERS,
     SORT_FIELD,
     IGNORED_TITLE_KEYWORDS,
+    REQUIRED_KEYWORDS,
 };
