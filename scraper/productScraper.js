@@ -59,11 +59,11 @@ const handleNewProduct = async (product, { newProducts }) => {
 
 const handleKnownProduct = async (product, oldPrice, { priceDrops }) => {
     const newPrice = product.effectivePrice;
+
+    await upsertProducts([product]);
     if (newPrice === oldPrice) {
         return;
     }
-
-    await upsertProducts([product]);
 
     if (newPrice != null && oldPrice != null && newPrice < oldPrice) {
         const message = `[price drop] ${product.title} | Rs.${oldPrice} -> Rs.${newPrice} | ${product.link}`;
